@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import '../App.css';
 import axios from 'axios';
 
-function Form(props) {
+function Form() {
     const [merchant, setMerchant] = useState('');
     const [item, setItem] = useState('');
     const [amount, setAmount] = useState('');
     const [currency, setCurrency] = useState([]);
+
     const [data, setData] = useState([]);
 
     function handleSubmit(event) {
@@ -69,11 +70,11 @@ function Form(props) {
                 <tbody>
                     {data.filter(crypto => crypto.code === currency).map(crypto => (
                         <tr>
-                            <td>{merchant}</td>
-                            <td>{item}</td>
-                            <td>{amount}</td>
-                            <td>{currency}</td>
-                            <td>{crypto.rate.toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
+                            <td key={merchant}>{merchant}</td>
+                            <td key={item}>{item}</td>
+                            <td key={amount}>{amount}</td>
+                            <td key={currency}>{currency}</td>
+                            <td key={crypto.rate}>{crypto.rate.toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
                             <td>{(amount * crypto.rate).toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
                             <td><button>Remove Item</button></td>
                         </tr>
