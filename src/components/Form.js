@@ -11,13 +11,6 @@ function Form(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        const val = {
-            merchant,
-            item,
-            amount,
-            currency
-        };
-        props.func(val);
         clearState();
     }
 
@@ -28,25 +21,23 @@ function Form(props) {
         setCurrency([]);
     };
 
-    function removeItem(event) {
-        event.preventDefault()
-    }
-
     useEffect(() => {
         const fetchData = async () => {
+            console.log('fetching data');
             const result = await axios(
                 'https://bitpay.com/api/rates/',
             );
 
             setData(result.data);
         };
-
         fetchData();
+        const interval = setInterval(fetchData, 120000)
+        return () => clearInterval(interval)
     }, []);
 
     return (
         <div className="Form">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e)=>handleSubmit(e)}>
                 <label>Merchant: </label>
                 <input type="text" placeholder='Type a merchant name...' value={merchant} onChange={(e) => setMerchant(e.target.value)} />
                 <label>Item: </label>
@@ -83,8 +74,8 @@ function Form(props) {
                             <td>{item}</td>
                             <td>{amount}</td>
                             <td>{currency}</td>
-                            <td>${crypto.rate.toLocaleString(undefined)}</td>
-                            <td>${amount * crypto.rate}</td>
+                            <td>{crypto.rate.toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
+                            <td>{(amount * crypto.rate).toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
                             <td><button>Remove Item</button></td>
                         </tr>
                     ))}
