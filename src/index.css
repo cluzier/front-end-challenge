@@ -109,6 +109,17 @@ input {
 
 /* end table styles */
 
+/* footer styles */
+
+#canvas {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  pointer-events: none; 
+}
+
+/* end footer styles */
+
 /* keyframes */
 
 @keyframes fadeIn {

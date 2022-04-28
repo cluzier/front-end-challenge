@@ -59,7 +59,7 @@ function Form(props) {
                         <option value={item.code}>{item.code}</option>
                     ))};
                 </select>
-                <button class="btn btn-submit" type="submit">Submit</button>
+                <button className="btn btn-submit" type="submit">Submit</button>
             </form>
 
             <br />
@@ -72,7 +72,7 @@ function Form(props) {
                         <th>Amount (Crypto)</th>
                         <th>Currency</th>
                         <th>Price/Crypto (USD)</th>
-                        <th>Amount (USD)</th>
+                        <th >Amount (USD)</th>
                         <th>Remove Item</th>
                     </tr>
                 </thead>
@@ -83,7 +83,7 @@ function Form(props) {
                             <td>{item}</td>
                             <td>{amount}</td>
                             <td>{currency}</td>
-                            <td>${crypto.rate}</td>
+                            <td>${crypto.rate.toLocaleString(undefined)}</td>
                             <td>${amount * crypto.rate}</td>
                             <td><button>Remove Item</button></td>
                         </tr>
