@@ -53,6 +53,7 @@ function Footer() {
         mesh.scale.x = mesh.scale.y = mesh.scale.z = 18;
         planet.add(mesh);
 
+        // eslint-disable-next-line no-redeclare
         var mesh = new THREE.Mesh(geom, bones);
         mesh.scale.x = mesh.scale.y = mesh.scale.z = 20;
         skelet.add(mesh);

@@ -27,7 +27,6 @@ function Form(props) {
             const result = await axios(
                 'https://bitpay.com/api/rates/',
             );
-
             setData(result.data);
         };
         fetchData();
@@ -50,7 +49,7 @@ function Form(props) {
                         <option value={item.code}>{item.code}</option>
                     ))};
                 </select>
-                <button className="btn btn-submit" type="submit">Submit</button>
+                <button type="submit">Submit</button>
             </form>
 
             <br />
