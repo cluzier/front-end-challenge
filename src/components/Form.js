@@ -9,9 +9,11 @@ function Form() {
     const [currency, setCurrency] = useState([]);
 
     const [data, setData] = useState([]);
+    const [customInput, setCustomInput] = useState([]);
 
     function handleSubmit(event) {
         event.preventDefault();
+        setCustomInput(customInput => [...customInput, { merchant, item, amount, currency, }]);
         clearState();
     }
 
@@ -28,16 +30,34 @@ function Form() {
             const result = await axios(
                 'https://bitpay.com/api/rates/',
             );
-            setData(result.data);
+            //reduce this so you can use a better data structure for n(1) lookup based on currency to look for rate compared to BTC
+            setData(result.data.reduce((prev, curr) => {
+                prev[curr.code] = {};
+                prev[curr.code].name = curr.name;
+                prev[curr.code].rate = curr.rate;
+
+                return prev;
+            }, {}));
         };
         fetchData();
         const interval = setInterval(fetchData, 120000)
         return () => clearInterval(interval)
     }, []);
 
+    useEffect(() => {
+        const savedCustomInputs = JSON.parse(localStorage.getItem('customInput'));
+        if (savedCustomInputs) {
+            setCustomInput(savedCustomInputs);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('items', JSON.stringify(customInput));
+    }, [customInput]);
+
     return (
         <div className="Form">
-            <form onSubmit={(e)=>handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <label>Merchant: </label>
                 <input type="text" placeholder='Type a merchant name...' value={merchant} onChange={(e) => setMerchant(e.target.value)} />
                 <label>Item: </label>
@@ -46,8 +66,8 @@ function Form() {
                 <input type="number" placeholder='Enter amount in crypto...' value={amount} onChange={(e) => setAmount(e.target.value)} />
                 <label>Currency: </label>
                 <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
-                    {data.map(item => (
-                        <option value={item.code}>{item.code}</option>
+                    {Object.keys(data).map(currency => (
+                        <option value={currency}>{currency}</option>
                     ))};
                 </select>
                 <button type="submit">Submit</button>
@@ -68,17 +88,28 @@ function Form() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.filter(crypto => crypto.code === currency).map(crypto => (
+                    {Object.keys(data).filter(crypto => crypto === currency).map(crypto => (
                         <tr>
-                            <td>{merchant}</td>
-                            <td>{item}</td>
-                            <td>{amount}</td>
-                            <td>{currency}</td>
-                            <td>{crypto.rate.toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
-                            <td>{(amount * crypto.rate).toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
+                            <td>{data[crypto].merchant}</td>
+                            <td>{data[crypto].item}</td>
+                            <td>{data[crypto].amount}</td>
+                            <td>{data[crypto].currency}</td>
+                            <td>{data[crypto].rate.toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
+                            <td>{(amount * data[crypto].rate).toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
                             <td><button>Remove Item</button></td>
                         </tr>
                     ))}
+                    {customInput.map(customData =>
+                        <tr>
+                            <td>{customData.merchant}</td>
+                            <td>{customData.item}</td>
+                            <td>{customData.amount}</td>
+                            <td>{customData.currency}</td>
+                            <td>{data[customData.currency].rate.toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
+                            <td>{(amount * data[customData.currency].rate).toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
+                            <td><button>Remove Item</button></td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>

@@ -16,10 +16,6 @@ h1 {
   font-size: 5vmin;
 }
 
-h1:hover {
-  animation: pulse 2s infinite;
-}
-
 p {
   font-family: "Archivo", sans-serif;
 }
@@ -50,7 +46,7 @@ button:hover {
 /* form styles */
 
 form {
-  max-width: 61.5em;
+  max-width: 64em;
   margin: auto;
   padding: 2vmin 1vmin 1vmin 1vmin;
   border: black solid 1px;
@@ -124,7 +120,8 @@ select {
   margin-right: auto;
   bottom: 0;
   width: 100%;
-  pointer-events: none; 
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* end footer styles */
@@ -137,34 +134,5 @@ select {
   }
   to {
     opacity: 1;
-  }
-}
-
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-  50% {
-    -webkit-transform: scale3d(1.05, 1.05, 1.05);
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
-  100% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-@keyframes pulse {
-  0% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-  50% {
-    -webkit-transform: scale3d(1.05, 1.05, 1.05);
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
-  100% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
   }
 }
