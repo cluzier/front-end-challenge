@@ -75,6 +75,14 @@ input {
   box-sizing: border-box;
 }
 
+select {
+  margin: .5em;
+  padding: 1em 2em;
+  background: transparent;
+  border: 1px solid #000;
+  border-radius: 40px;
+}
+
 /* end form styles */
 
 /* tables styles */

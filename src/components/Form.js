@@ -70,11 +70,11 @@ function Form() {
                 <tbody>
                     {data.filter(crypto => crypto.code === currency).map(crypto => (
                         <tr>
-                            <td key={merchant}>{merchant}</td>
-                            <td key={item}>{item}</td>
-                            <td key={amount}>{amount}</td>
-                            <td key={currency}>{currency}</td>
-                            <td key={crypto.rate}>{crypto.rate.toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
+                            <td>{merchant}</td>
+                            <td>{item}</td>
+                            <td>{amount}</td>
+                            <td>{currency}</td>
+                            <td>{crypto.rate.toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
                             <td>{(amount * crypto.rate).toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
                             <td><button>Remove Item</button></td>
                         </tr>
