@@ -118,7 +118,7 @@ function Form() {
                             <td>{customData.amount}</td>
                             <td>{customData.currency}</td>
                             <td>{data[customData.currency].rate.toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
-                            <td>{(amount * data[customData.currency].rate).toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
+                            <td>{(customData.amount * data[customData.currency].rate).toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
                             <td><button>Edit Item</button></td>
                             <td>
                                 <button onClick={() => {
