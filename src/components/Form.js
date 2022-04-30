@@ -55,6 +55,8 @@ function Form() {
         localStorage.setItem('items', JSON.stringify(customInput));
     }, [customInput]);
 
+    const areAllFieldsFilled = (merchant != "") && (item != "") && (amount != "") && (currency != "");
+
     return (
         <div className="Form">
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -66,11 +68,12 @@ function Form() {
                 <input type="number" placeholder='Enter amount in crypto...' value={amount} onChange={(e) => setAmount(e.target.value)} />
                 <label>Currency: </label>
                 <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+                <option value="" disabled selected hidden>Select...</option>
                     {Object.keys(data).map(currency => (
                         <option value={currency}>{currency}</option>
                     ))};
                 </select>
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={!areAllFieldsFilled}>Submit</button>
             </form>
 
             <br />
