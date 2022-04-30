@@ -35,10 +35,18 @@ button {
   border-radius: 40px;
 }
 
+button:enabled {
+  margin: 1em;
+  padding: 1em 2em;
+  background: transparent;
+  border: 1px solid #000;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
 button:hover {
   color: #fff;
   background: #000;
-  cursor: pointer;
 }
 
 button:disabled,

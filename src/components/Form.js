@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 import axios from 'axios';
@@ -55,7 +56,7 @@ function Form() {
         localStorage.setItem('items', JSON.stringify(customInput));
     }, [customInput]);
 
-    const areAllFieldsFilled = (merchant != "") && (item != "") && (amount != "") && (currency != "");
+    const areAllFieldsFilled = (merchant !== "") && (item !== "") && (amount !== "") && (currency != "");
 
     return (
         <div className="Form">
