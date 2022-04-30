@@ -107,7 +107,17 @@ function Form() {
                             <td>{customData.currency}</td>
                             <td>{data[customData.currency].rate.toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
                             <td>{(amount * data[customData.currency].rate).toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
-                            <td><button>Remove Item</button></td>
+                            <td>
+                                <button onClick={() => {
+                                    setCustomInput(prev => {
+                                        let newState = [...prev];
+                                        newState.splice(customData, 1);
+                                        return newState;
+                                    })
+                                }}>
+                                    Remove Item
+                                </button>
+                            </td>
                         </tr>
                     )}
                 </tbody>
