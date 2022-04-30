@@ -45,3 +45,5 @@ Start the server
 
 - [@cluzier](https://www.github.com/cluzier)
 
+---
+Color scheme and design inspired by https://www.frontendpractice.com/
