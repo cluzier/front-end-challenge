@@ -1,7 +1,9 @@
 
 # Front-End Code Challenge 2020
 
-Single-page application using React.js that displays a table with real-time data using [Bitpay API](https://bitpay.com/api/rates/)
+Single-page application using React.js that displays a table with data using [Bitpay API](https://bitpay.com/api/rates/).
+
+*For best results, view in Chrome browser*
 
 
 ## Features
