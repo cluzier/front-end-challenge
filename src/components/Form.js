@@ -83,7 +83,8 @@ function Form() {
                         <th>Amount (Crypto)</th>
                         <th>Currency</th>
                         <th>Price/Crypto (USD)</th>
-                        <th >Amount (USD)</th>
+                        <th>Amount (USD)</th>
+                        <th>Edit Item</th>
                         <th>Remove Item</th>
                     </tr>
                 </thead>
@@ -96,7 +97,18 @@ function Form() {
                             <td>{data[crypto].currency}</td>
                             <td>{data[crypto].rate.toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
                             <td>{(amount * data[crypto].rate).toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
-                            <td><button>Remove Item</button></td>
+                            <td><button>Edit Item</button></td>
+                            <td>
+                                <button onClick={() => {
+                                    setCustomInput(prev => {
+                                        let newState = [...prev];
+                                        newState.splice(data[crypto], 1);
+                                        return newState;
+                                    })
+                                }}>
+                                    Remove Item
+                                </button>
+                            </td>
                         </tr>
                     ))}
                     {customInput.map(customData =>
@@ -107,6 +119,7 @@ function Form() {
                             <td>{customData.currency}</td>
                             <td>{data[customData.currency].rate.toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
                             <td>{(amount * data[customData.currency].rate).toLocaleString("en-US", { style: "currency", currency: "USD" })}</td>
+                            <td><button>Edit Item</button></td>
                             <td>
                                 <button onClick={() => {
                                     setCustomInput(prev => {
