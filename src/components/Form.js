@@ -89,7 +89,7 @@ function Form() {
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(data).filter(crypto => crypto === currency).map(crypto => (
+                    {/* {Object.keys(data).filter(crypto => crypto === currency).map(crypto => (
                         <tr>
                             <td>{data[crypto].merchant}</td>
                             <td>{data[crypto].item}</td>
@@ -110,7 +110,7 @@ function Form() {
                                 </button>
                             </td>
                         </tr>
-                    ))}
+                    ))} */}
                     {customInput.map(customData =>
                         <tr>
                             <td>{customData.merchant}</td>
