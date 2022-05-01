@@ -16,6 +16,10 @@ h1 {
   font-size: 5vmin;
 }
 
+img {
+  height: auto;
+}
+
 p {
   font-family: "Archivo", sans-serif;
 }
@@ -50,7 +54,7 @@ button:hover {
 }
 
 button:disabled,
-button[disabled]{
+button[disabled] {
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
@@ -71,7 +75,6 @@ label {
   text-align: right;
   display: inline-block;
   vertical-align: middle;
-  margin: 0 1em 0 0;
   width: 250px;
   text-align: center;
 }
@@ -87,7 +90,7 @@ input {
 }
 
 select {
-  margin: .5em;
+  margin: 0.5em;
   padding: 1em 2em;
   background: transparent;
   border: 1px solid #000;
